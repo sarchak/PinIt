@@ -5,6 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
+var querystring = require("querystring");
 
 var app = module.exports = express.createServer();
 var querystring = require("querystring");
@@ -37,19 +38,48 @@ app.configure('production', function(){
 
 
 app.get('/', routes.index);
+
+app.get('/search', function(req,res){
+  console.log(req.url);
+  var q = url.parse(req.url).query;
+  var keyword = querystring.parse(q)["keyword"];
+  console.log(keyword);
+  SyncDB.find({'text' : new RegExp(keyword, 'i')}, function (err, doc){
+    console.log(doc)
+    res.writeHeader(200,'OK');
+    res.write(JSON.stringify(doc));
+    res.end();
+  });
+});
 app.post('/upload', function(req, res){
   console.log(req.url);
-  console.log(req.body.username,req.body.email,req.body.title,req.body.text);
-  var rec  = new SyncDB({'username':req.body.username,
+  console.log(req.body.username,req.body.email,req.body.title,req.body.text,req.body.url);
+  if(req.body.text == undefined){
+	console.log("Text is undefined");
+	var options = {
+	  host: req.body.url,
+	  port: 80,
+	  path: '/'
+	};
+	http.get(options, function(res) {
+	  console.log("Got response: " + res.statusCode);
+	  console.log(res);
+	}).on('error', function(e) {
+	  console.log("Got error: " + e.message);
+	});
+  }
+  else {
+	var rec  = new SyncDB({'username':req.body.username,
                          'email': req.body.email,
                          'title': req.body.title,
                          'url':req.body.url,
                          'text':req.body.text,
                          'tags':req.body.tags
                         });
-  rec.save()
-  res.writeHeader(200,'OK');
-  res.end();
+   rec.save()
+   res.writeHeader(200,'OK');
+   res.end();
+ }
 });
 
 app.listen(3000);
