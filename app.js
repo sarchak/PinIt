@@ -6,12 +6,12 @@
 var express = require('express')
   , routes = require('./routes')
 var querystring = require("querystring");
-
+var http = require('http');
 var app = module.exports = express.createServer();
 var querystring = require("querystring");
 var url = require("url");
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://192.168.1.125/syncit');
+var db = mongoose.connect('mongodb://192.168.1.150/syncit');
 
 var Schema = mongoose.Schema;
 var syncrec = new Schema({'username': String, 'email':String,'title':String, 'url':String, 'text': String, 'tags': String ,  date : { type : Date, default: Date.now}});
@@ -54,22 +54,38 @@ app.get('/search', function(req,res){
 app.post('/upload', function(req, res){
   console.log(req.url);
   console.log(req.body.username,req.body.email,req.body.title,req.body.text,req.body.url);
-  if(req.body.text == undefined){
-	console.log("Text is undefined");
-	var options = {
-	  host: req.body.url,
+  console.log(req.body.text);
+  if(req.body.text == "undefined"){
+    console.log('preparing request to ' + req.body.url)
+    u = require('url').parse(req.body.url);
+    var body="";
+    var options = {
+	  host: u['host'],
 	  port: 80,
-	  path: '/'
+	  path: u['pathname']
 	};
-	http.get(options, function(res) {
-	  console.log("Got response: " + res.statusCode);
-	  console.log(res);
-	}).on('error', function(e) {
-	  console.log("Got error: " + e.message);
-	});
+    http.get(options, function(result) { 
+ 	  console.log("Got response: " + result.statusCode);
+	  result.addListener('data', function (chunk) {
+            body += chunk;
+            console.log("chunk recieved\n");
+          });
+          result.addListener('end', function(){
+	    var rec  = new SyncDB({'username':req.body.username,
+                         'email': req.body.email,
+                         'title': req.body.title,
+                         'url':req.body.url,
+                         'text':body,
+                         'tags':req.body.tags
+             });
+             rec.save()
+             res.writeHeader(200,'OK');
+             res.end();
+	  });
+	})
   }
   else {
-	var rec  = new SyncDB({'username':req.body.username,
+   var rec  = new SyncDB({'username':req.body.username,
                          'email': req.body.email,
                          'title': req.body.title,
                          'url':req.body.url,
@@ -82,5 +98,5 @@ app.post('/upload', function(req, res){
  }
 });
 
-app.listen(3000);
+app.listen(8888);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
