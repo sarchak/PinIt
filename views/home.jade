@@ -1,0 +1,11 @@
+- if (!everyauth.loggedIn)
+  h2 Not Authenticated
+  #register
+    a(href='/register') Register
+  #password-login
+    a(href='/login', style='border: 0px') Login with Password
+- else
+  h2 Authenticated
+  #user-id Logged in with `user.id` #{user.id} - aka `everyauth.user.id` #{everyauth.user.id}
+  h3
+    a(href='/logout') Logout
