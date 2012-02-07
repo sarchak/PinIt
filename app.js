@@ -87,8 +87,8 @@ app.get('/', function(req,res){
 
 app.get('/search', function(req,res){
   console.log(req.url);
-  var q = url.parse(req.url).query;
-  var keyword = querystring.parse(q)["keyword"];
+  var quer = url.parse(req.url).query;
+  var keyword = querystring.parse(quer)["q"];
   console.log(keyword);
   SyncDB.find({'text' : new RegExp(keyword, 'i')}, function (err, doc){
     console.log(doc)
