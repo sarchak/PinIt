@@ -1,20 +1,78 @@
+
 body {
-  padding: 50px;
-  background: #3D3D3D;
-  font: 14px 'Lucida Grande', Arial, sans-serif;
+  background: #1B1B24;
+  height: 800px;
+  color: hsla(246,14%,62%,1);
+  font-family: 'Helvetica Neue', Helvetica, Arial Geneva, sans-serif;
+  font-size: 13px;
+  text-align: center;
 }
 
-a {
-  color: #00B7FF;
+h1 {
+  font-family: "CorbelRegular", "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  padding: 10px 0 24px 0;
+  text-align: center;
+  text-shadow: 0 5px 2px #222;
+  font-size: 75px;
+  color: #a9a9a9;  
+  letter-spacing: -5px;
 }
-#container {
-	height: 150px;
-    width: 400px;
-    margin: 0 auto;
-    padding: 15px;
-    position: relative;
-    background: #E9EAEE;
-	-webkit-border-radius: 25px;
-	-moz-border-radius: 25px;
-	border-radius: 25px;
+a {
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: block;
+  height: 10px;
+  padding: 10px 0 20px 0;
+  color: #9587EB;
+  text-decoration: none;
+  text-shadow: 0 0 1px #000;
+}
+a:hover {
+  color: rgb(166, 166, 255);
+  text-shadow: 0 0 6px rgba(120, 120, 255, .4);  
+}
+.insetText {
+        font-family: Lucida Grande;
+        background-color: #666666;
+        -webkit-background-clip: text;
+	    -moz-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+#main {
+	height: 400px; margin: auto;
+	width: 700px; background: #2c443e; padding: 10px;
+	font-size: 30px; color: #e3d7bf	; text-shadow: 0px 1px 2px #222;
+	-webkit-box-shadow: 0px 2px 3px #555;
+	-moz-box-shadow: 0px 2px 3px #555;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	
+}
+header {
+  width:auto;
+  height: auto;
+  
+  background: #29264d;
+  font-family: "CorbelRegular", "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+border-top-width: 4px;
+border-right-width: 4px;
+border-bottom-width: 4px;
+border-left-width: 4px;
+border-top-style: solid;
+border-right-style: solid;
+border-bottom-style: solid;
+border-left-style: solid;
+border-top-color: #E5EAF0;
+border-right-color: #E5EAF0;
+border-bottom-color: #E5EAF0;
+border-left-color: #E5EAF0;
+  font-size: 75px;
+  color: #C9C3E6;  
+  letter-spacing: -5px;
 }
