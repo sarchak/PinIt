@@ -2,7 +2,7 @@
 html
   head
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-    title Coding A CSS3 & HTML5 One Page Template | Tutorialzine demo
+    title hashedOut
     link(rel='stylesheet', type='text/css', href='/stylesheets/template.css')
     script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
     style(type='text/css')
@@ -11,7 +11,7 @@ html
         display: block;
         }
   body
-    section#page
+      section#page
       //
          Defining the #page section with the section tag 
       header
@@ -25,30 +25,12 @@ html
              The nav link semantically marks your main site navigation 
           ul
             li
-              a(href='#article1') How To
+              a(href='/') Home
             li
               a(href='/register') Register
             li
               a(href='/login') Login
-      section#articles
-        //
-           A new section with the articles 
-        //
-           Article 1 start 
-        .line
-        //
-           Dividing line 
-        article#article1
-          //
-             The new article tag. The id is supplied so it can be scrolled into view. 
-          h2 Why hashedOut?
-          .line
-          .articleBody.clear
-            // 
-            ul
-              li  Store only relevant content from the webpage. 
-              li  Bookmark a web page with auto indexing support. 
-              li  Most importantly search your own index. 
+      body!= body
       footer
         //
            Marking the footer section 
@@ -64,4 +46,3 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js')
     script(src='jquery.scrollTo-1.4.2/jquery.scrollTo-min.js')
     script(src='script.js')
-    body!= body
