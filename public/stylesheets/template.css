@@ -16,7 +16,7 @@ body{
 	/* Setting the default text color, size, page background and a font stack: */
 	font-size:13px;
 	color:#fcfcfc;
-	background-color:#355664;
+	background-color:#882810;
 	
 	font-family:Arial, Helvetica, sans-serif;
 }
@@ -46,6 +46,7 @@ h1,h2,h3{
 
 h1{
 	/* The logo text */
+	margin: 5px;
 	font-size:50px;
 	padding:5px 0 0;
 	-webkit-font-smoothing: antialiased;
@@ -58,6 +59,7 @@ h3{
 	font-size:20px;
 	font-weight:normal;
 	margin:0 0 1em;
+	margin: 5px;
 }
 
 
@@ -109,6 +111,7 @@ nav{
 	-moz-box-shadow:0 1px 1px #333333;
 	-webkit-box-shadow:0 1px 1px #333333;
 	box-shadow:0 1px 1px #333333;
+	margin : 5px;
 }
 
 /* The clearfix hack to clear the floats: */

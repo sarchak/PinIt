@@ -7,7 +7,6 @@ var express = require('express')
   , routes = require('./routes')
 var querystring = require("querystring");
 var http = require('http');
-var querystring = require("querystring");
 var url = require("url");
 var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://192.168.1.150/syncit');
@@ -82,66 +81,87 @@ app.configure('production', function(){
 });
 
 app.get('/', function(req,res){
-	res.render('home');
+	console.log("Coming in get");
+	console.log("User:"+req.user);
+	console.log("logged in:"+req.loggedIn);
+	console.log()
+	if (!req.loggedIn) {
+		console.log("Not logged in");
+	    res.redirect('/login');
+	} else {
+		console.log("Already logged in");
+		res.render('home');
+	}
+
+	
 });
 
 app.get('/search', function(req,res){
-  console.log(req.url);
-  var quer = url.parse(req.url).query;
-  var keyword = querystring.parse(quer)["q"];
-  console.log(keyword);
-  SyncDB.find({'text' : new RegExp(keyword, 'i')}, function (err, doc){
-    console.log(doc)
-    res.writeHeader(200,'OK');
-    res.write(JSON.stringify(doc));
-    res.end();
-  });
+  if(!req.loggedIn){
+   res.redirect('/login');	
+  } else {
+	  console.log(req.url);
+	  var quer = url.parse(req.url).query;
+	  var keyword = querystring.parse(quer)["q"];
+	  console.log(keyword);
+	  SyncDB.find({'text' : new RegExp(keyword, 'i')}, function (err, doc){
+	    console.log(doc)
+	    res.writeHeader(200,'OK');
+	    res.write(JSON.stringify(doc));
+	    res.end();
+	  });
+  }
 });
 app.post('/upload', function(req, res){
   console.log(req.url);
   console.log(req.body.username,req.body.email,req.body.title,req.body.text,req.body.url);
   console.log(req.body.text);
-  if(req.body.text == "undefined"){
-    console.log('preparing request to ' + req.body.url)
-    u = require('url').parse(req.body.url);
-    var body="";
-    var options = {
-	  host: u['host'],
-	  port: 80,
-	  path: u['pathname']
-	};
-    http.get(options, function(result) { 
- 	  console.log("Got response: " + result.statusCode);
-	  result.addListener('data', function (chunk) {
-            body += chunk;
-            console.log("chunk recieved\n");
-          });
-          result.addListener('end', function(){
-	    var rec  = new SyncDB({'username':req.body.username,
-                         'email': req.body.email,
-                         'title': req.body.title,
-                         'url':req.body.url,
-                         'text':body,
-                         'tags':req.body.tags
-             });
-             rec.save()
-             res.writeHeader(200,'OK');
-             res.end();
-	  });
-	})
+  if(!req.loggedIn){
+      res.redirect('/login');	
+  }else{
+	  if(req.body.text == "undefined"){
+	    console.log('preparing request to ' + req.body.url)
+	    u = require('url').parse(req.body.url);
+	    var body="";
+	    var options = {
+		  host: u['host'],
+		  port: 80,
+		  path: u['pathname']
+		};
+	    http.get(options, function(result) { 
+	 	  console.log("Got response: " + result.statusCode);
+		  result.addListener('data', function (chunk) {
+	            body += chunk;
+	            console.log("chunk recieved\n");
+	          });
+	          result.addListener('end', function(){
+		    var rec  = new SyncDB({'username':req.body.username,
+	                         'email': req.body.email,
+	                         'title': req.body.title,
+	                         'url':req.body.url,
+	                         'text':body,
+	                         'tags':req.body.tags
+	             });
+	             rec.save()
+	             res.writeHeader(200,'OK');
+	             res.end();
+		  });
+		})
+	  }
+	  else {
+	   var rec  = new SyncDB({'username':req.body.username,
+	                         'email': req.body.email,
+	                         'title': req.body.title,
+	                         'url':req.body.url,
+	                         'text':req.body.text,
+	                         'tags':req.body.tags
+	                        });
+	   rec.save()
+	   res.writeHeader(200,'OK');
+	   res.end();
+	 }
   }
-  else {
-   var rec  = new SyncDB({'username':req.body.username,
-                         'email': req.body.email,
-                         'title': req.body.title,
-                         'url':req.body.url,
-                         'text':req.body.text,
-                         'tags':req.body.tags
-                        });
-   rec.save()
-   res.writeHeader(200,'OK');
-   res.end();
- }
+
 });
 
 mongooseAuth.helpExpress(app);
