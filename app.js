@@ -98,7 +98,9 @@ app.get('/', function(req,res){
 
 app.get('/search', function(req,res){
   if(!req.loggedIn){
-   res.redirect('/login');	
+   console.log("Not logged in");	
+   res.writeHeader(401,"Login required");
+   res.end();	
   } else {
 	  console.log(req.url);
 	  var quer = url.parse(req.url).query;
@@ -117,7 +119,9 @@ app.post('/upload', function(req, res){
   console.log(req.body.username,req.body.email,req.body.title,req.body.text,req.body.url);
   console.log(req.body.text);
   if(!req.loggedIn){
-      res.redirect('/login');	
+	  console.log("Not logged in");
+      res.writeHeader(401,"Login required");
+      res.end();
   }else{
 	  if(req.body.text == "undefined"){
 	    console.log('preparing request to ' + req.body.url)
