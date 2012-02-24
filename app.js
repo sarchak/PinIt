@@ -133,9 +133,10 @@ app.post('/upload', function(req, res){
 	            body += chunk;
 	            console.log("chunk recieved\n");
 	          });
-	      result.addListener('end', function(){
-		      var rec  = new SyncDB({'username':req.body.username,
-	                         'email': req.body.email,
+	          result.addListener('end', function(){
+		      console.log("Sync the whole page");
+		      var rec  = new SyncDB({'username':req.user.name,
+	                         'email': req.user.email,
 	                         'title': req.body.title,
 	                         'url':req.body.url,
 	                         'text':body,
