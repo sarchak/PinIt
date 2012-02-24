@@ -17,7 +17,7 @@ body{
 	font-size:13px;
 	color:#fcfcfc;
 	background-color:#882810;
-	
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#882810), to(#882810), color-stop(.6,#963c14));
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -50,7 +50,7 @@ h1{
 	font-size:50px;
 	padding:5px 0 0;
 	-webkit-font-smoothing: antialiased;
-	color: #a9a9a9; 
+	color: #f8f8f5; 
 }
 
 h3{
@@ -67,6 +67,7 @@ h2{
 	font-size:30px;
 	font-weight:normal;
 	letter-spacing:0.01em;
+	color: #f8f8f5;
 }
 
 p{
@@ -77,8 +78,8 @@ p{
 .line{
 	/* The dividing line: */
 	height:1px;
-	background-color:#24404c;
-	border-bottom:1px solid #416371;
+	background-color:#000000;
+	border-bottom:1px solid #882810;
 	margin:1em 0;
 	overflow:hidden;
 }
@@ -89,7 +90,7 @@ article li {
 article .line{
 	/* The dividing line inside of the article is darker: */
 	background-color:#15242a;
-	border-bottom-color:#204656;
+	border-bottom-color:#882810;
 	margin:1.3em 0;
     font-family: Lucida Grande;
     font-size:2.25em;
@@ -164,7 +165,7 @@ nav, article, nav ul li a,figure{
 }
 
 article{
-	background-color:#213E4A;
+	background-color:#882810;
 	margin:3em 0;
 	padding:20px;
 	font-size:1.25em;
@@ -186,12 +187,11 @@ figure{
 	
 	padding: 10px;
 	border:2px solid #142830;
-	float:right;
-	height:200px;
-	margin-left:15px;
+	height:300px;
+	margin:auto;
 	overflow:hidden;
-	width:300px;
-	background-color:#355664;
+	width:400px;
+	background-color:#f8f8f5;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 }
@@ -208,7 +208,7 @@ figure img{
 /* Footer styling: */
 
 footer{
-	margin-bottom:30px;
+	margin-bottom:10px;
 	text-align:center;
 	font-size:0.825em;
 }
@@ -221,7 +221,7 @@ footer p{
 
 footer a,footer a:visited{
 	color:#cccccc;
-	background-color:#213e4a;
+	background-color:#882810;
 	display:block;
 	padding:2px 4px;
 	z-index:100;

@@ -62,12 +62,13 @@ var syncrec = new Schema({'username': String,
 
 var SyncDB = mongoose.model('SyncDB', syncrec);
 app.configure(function(){
+  var oneYear = 31557600000;
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.session({ secret: 'esoognom'}));
+  app.use(express.session({ secret: 'esoognom', maxAge: oneYear}));
   app.use(mongooseAuth.middleware());
   app.use(express.static(__dirname + '/public'));
 });
@@ -138,8 +139,8 @@ app.post('/upload', function(req, res){
 	            body += chunk;
 	            console.log("chunk recieved\n");
 	          });
-	          result.addListener('end', function(){
-		    var rec  = new SyncDB({'username':req.body.username,
+	      result.addListener('end', function(){
+		      var rec  = new SyncDB({'username':req.body.username,
 	                         'email': req.body.email,
 	                         'title': req.body.title,
 	                         'url':req.body.url,
