@@ -86,13 +86,7 @@ app.get('/', function(req,res){
 	console.log("User:"+req.user);
 	console.log("logged in:"+req.loggedIn);
 	console.log()
-	if (!req.loggedIn) {
-		console.log("Not logged in");
-	    res.redirect('/login');
-	} else {
-		console.log("Already logged in");
-		res.render('home');
-	}
+    res.render('home');
 
 	
 });
