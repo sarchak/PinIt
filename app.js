@@ -85,10 +85,11 @@ app.get('/', function(req,res){
 	console.log("Coming in get");
 	console.log("User:"+req.user);
 	console.log("logged in:"+req.loggedIn);
-	console.log()
-    res.render('home');
-
-	
+	if(req && req.user) {
+	   	var user = req.user;
+		console.log(user.email);	
+	}
+	res.render('home')
 });
 
 app.get('/search', function(req,res){
@@ -101,7 +102,7 @@ app.get('/search', function(req,res){
 	  var quer = url.parse(req.url).query;
 	  var keyword = querystring.parse(quer)["q"];
 	  console.log(keyword);
-	  SyncDB.find({'text' : new RegExp(keyword, 'i')}, function (err, doc){
+	  SyncDB.find({'email':req.user.email, 'text' : new RegExp(keyword, 'i')}, function (err, doc){
 	    console.log(doc)
 	    res.writeHeader(200,'OK');
 	    res.write(JSON.stringify(doc));
@@ -111,8 +112,7 @@ app.get('/search', function(req,res){
 });
 app.post('/upload', function(req, res){
   console.log(req.url);
-  console.log(req.body.username,req.body.email,req.body.title,req.body.text,req.body.url);
-  console.log(req.body.text);
+  console.log(req.user.email, req.user.name);
   if(!req.loggedIn){
 	  console.log("Not logged in");
       res.writeHeader(401,"Login required");
@@ -148,8 +148,8 @@ app.post('/upload', function(req, res){
 		})
 	  }
 	  else {
-	   var rec  = new SyncDB({'username':req.body.username,
-	                         'email': req.body.email,
+	   var rec  = new SyncDB({'username':req.user.name,
+	                         'email': req.user.email,
 	                         'title': req.body.title,
 	                         'url':req.body.url,
 	                         'text':req.body.text,
