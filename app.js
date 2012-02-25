@@ -27,17 +27,18 @@ UserSchema.plugin(mongooseAuth, {
     }
   , password: {
         loginWith: 'email'
+      , scope: 'email'
       , extraParams: {
    			name: String
         }
       , everyauth: {
             getLoginPath: '/login'
           , postLoginPath: '/login'
-          , loginView: 'login.jade'
+          , loginView: 'home.jade'
           , getRegisterPath: '/register'
           , postRegisterPath: '/register'
           , registerView: 'register.jade'
-          , loginSuccessRedirect: '/'
+          , loginSuccessRedirect: '/bingo.jade'
           , registerSuccessRedirect: '/'
         }
     }
@@ -167,3 +168,4 @@ app.post('/upload', function(req, res){
 mongooseAuth.helpExpress(app);
 app.listen(8888);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+

@@ -1,0 +1,49 @@
+!!! 5
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title hashedOut
+    link(rel='stylesheet', type='text/css', href='/stylesheets/template.css')
+    script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+    style(type='text/css')
+        .clear {
+        zoom: 1;
+        display: block;
+        }
+  body
+      section#page
+      //
+         Defining the #page section with the section tag 
+      header
+        //
+           Defining the header section of the page with the appropriate tag 
+        hgroup
+          h1 hashedOut
+          h3 Create your own web index.
+        nav.clear
+          //
+             The nav link semantically marks your main site navigation 
+          ul
+            li
+              a(href='/') Home
+            li
+              a(href='/register') Register
+            li
+              a(href='/login') Login
+      body!= body
+      footer
+        //
+           Marking the footer section 
+        .line
+        p Copyright 2012 - hashedOut.info
+        //
+           Change the copyright notice 
+        a.up(href='#') Go UP
+    //
+       Closing the #page section 
+    //
+       JavaScript Includes 
+ 
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js')
+    script(src='jquery.scrollTo-1.4.2/jquery.scrollTo-min.js')
+    script(src='script.js')

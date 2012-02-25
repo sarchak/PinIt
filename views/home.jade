@@ -1,21 +1,37 @@
-body 
-section#page
- section#articles
-  //
-     A new section with the articles 
-  //
-     Article 1 start 
-  .line
-  //
-     Dividing line 
-  article#article1
-    //
-       The new article tag. The id is supplied so it can be scrolled into view. 
-    h2 Why hashedOut?
-    .line
-    .articleBody.clear
-      // 
+body
+  h1  hashedOut 
+  #container
+   #content
+      h2  Create your own web index.
+      p  A simple solution to how you collect and index relevant information. 
       ul
-        li  Store only relevant content from the webpage. 
-        li  Bookmark a web page with auto indexing support. 
-        li  Most importantly search your own index.
+        li Index fully or any part of the webpage.
+        li Simple way of uploading relevant information.
+        li Search your index seamlessly.
+   #login
+     form(action='/login', method='POST')
+        #Email
+          label(for=everyauth.password.loginFormFieldName) Email
+          input(type='text', name=everyauth.password.loginFormFieldName, value="")
+        #password
+          label(for=everyauth.password.passwordFormFieldName) Password
+          input(type='password', name=everyauth.password.passwordFormFieldName)
+        #submit
+          input(type='submit') Login
+        //
+        form 
+    #signup   
+     form(action='/register', method='POST')
+        #Email
+          label(for=everyauth.password.loginFormFieldName) Email
+          input(type='text', name=everyauth.password.loginFormFieldName, value=#{userParams[everyauth.password.loginFormFieldName]})
+        #password
+          label(for=everyauth.password.passwordFormFieldName) Password
+          input(type='password', name=everyauth.password.passwordFormFieldName)
+        #name
+          label(for='name') Name
+          input(type='text', name='name')
+        #submit
+          input(type='submit') Register
+       //
+       form 

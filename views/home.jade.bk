@@ -1,12 +1,32 @@
-h2 Create your own Web Index.
+body 
+section#page
+ section#articles
+  //
+     A new section with the articles 
+  //
+     Article 1 start 
+  .line
+  //
+     Dividing line 
+  article#article1
+    //
+       The new article tag. The id is supplied so it can be scrolled into view. 
+    h2 Why hashedOut?
+    .line
+    .articleBody.clear
+      // 
+      ul
+        li  Store only relevant content from the webpage. 
+        li  Bookmark a web page with auto indexing support. 
+        li  Most importantly search your own index.
+        form(action='/login', method='POST')
+          #Email
+            label(for=everyauth.password.loginFormFieldName) Email
+            input(type='text', name=everyauth.password.loginFormFieldName, value=#{email})
+          #password
+            label(for=everyauth.password.passwordFormFieldName) Password
+            input(type='password', name=everyauth.password.passwordFormFieldName)
+          #submit
+            input(type='submit') Login
 
-- if (!everyauth.loggedIn)
-  #register
-    a(href='/register') Register
-  #password-login
-    a(href='/login', style='border: 0px') Login with Password
-- else
-  h2 Authenticated
-  #user-id Logged in with `user.id` #{user.id} - aka `everyauth.user.id` #{everyauth.user.id}
-  h3
-    a(href='/logout') Logout
+
