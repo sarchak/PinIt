@@ -106,7 +106,6 @@ app.get('/search', function(req,res){
 	  var keyword = querystring.parse(quer)["q"];
 	  console.log(keyword);
 	  SyncDB.find({'email':req.user.email, 'text' : new RegExp(keyword, 'i')}, function (err, doc){
-	    console.log(doc)
 	    res.writeHeader(200,'OK');
 	    res.write(JSON.stringify(doc));
 	    res.end();
