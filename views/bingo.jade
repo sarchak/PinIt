@@ -1,0 +1,40 @@
+
+head
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+  title hashedOut
+  link(rel='stylesheet', type='text/css', href='/stylesheets/loggedin.css')
+  script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+  style(type='text/css')
+      .clear {
+      zoom: 1;
+      display: block;
+      }
+body
+    section#page
+    //
+       Defining the #page section with the section tag 
+    header
+      //
+         Defining the header section of the page with the appropriate tag 
+      nav.clear    
+        ul
+          li
+            a(href='/v1/') Home
+          li
+            a(href='/Setting') Settings
+          li
+            a(href='/logout') Logout
+
+     #container
+          h2 Getting Started
+          ul
+            li Install the chrome plugin. Currently this plugin works only in chrome.
+                  a(href="/hashedOut.crx") Download.
+               
+            li You can select the relevant content like this and index it.
+                 img.photoframe(style='padding: 10px;', title='glass_buttons', border='0', alt='glass_buttons', src='/images/selection.png', width='760', height='430')
+            li You can also select the whole web page and index it .
+                     img.photoframe(style='padding: 10px;', title='glass_buttons', border='0', alt='glass_buttons', src='/images/fullweb.png', width='760', height='430') 
+            li You can search from your index as mentioned below. Click on the hash icon on the top right corner. Enter keyword and search. It will display all the links which contains your keyword .
+                             img.photoframe(style='padding: 10px;', title='glass_buttons', border='0', alt='glass_buttons', src='/images/search.png', width='760', height='430')         
+            

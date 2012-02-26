@@ -3,7 +3,7 @@ body{
 	/* Setting the default text color, size, page background and a font stack: */
 	font-size:13px;
 	color:#0f2654;
-    background-color:#445c8c;
+    background-color:#c9d0e5;
     font: 14px/1.4 "Monaco", "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; color: #333; overflow-x: hidden;
 }
 body:before {
@@ -57,54 +57,21 @@ h2 {
   font: 24px/1.4 "Monaco", "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; color: #333; overflow-x: hidden;
 }
 #container{
-	padding: 20px;
-	height: 328px;
+	
+	margin-top: 100px;
+	height: 1528px;
 	width: 800px;
-	margin: auto;
-
-}
-#content{
-	padding: 10px;
-	height: 298px;
-	width: 500px;
-	float: left;
-	background-color: #c9d0e5;
+	background-color: #ffffff;
 	border-radius: 8px;
 	box-shadow: inset 0 1 6px #0f2654;
 }
-#login{
-	padding: 5px;
-	float: right;
-	height: 128px;
-	width: 250px;
-	background-color: #c9d0e5;
-	border-radius: 4px;
-	box-shadow: inset 0 1 6px #0f2654;
-}
-#signup{
-	margin-top: 5px;
-	padding: 5px;
-	float: right;
-	height: 200	px;
-	width: 250px;
-	
-	background-color: #c9d0e5;
-	border-radius: 4px;
-	box-shadow: inset 0 1 6px #0f2654;
-}
-nav{
-	background:url(img/gradient_light.jpg) repeat-x 50% 50% #f8f8f8;
-	padding:0 5px;
-	position:absolute;
-	right:0;
-	top:1em;
-	
-	border:1px solid #FCFCFC;
 
+nav{
+	position:absolute;
+	border:1px solid #FCFCFC;
 	-moz-box-shadow:0 1px 1px #333333;
 	-webkit-box-shadow:0 1px 1px #333333;
 	box-shadow:0 1px 1px #333333;
-	margin : 5px;
 }
 /* The navigation styling: */
 
@@ -117,10 +84,8 @@ nav ul li a:visited{
 	color:#565656;
 	display:block;
 	float:left;
-	font-size:1.25em;
+	font-size:14px;
 	font-weight:bold;
-	margin:5px 2px;
-	padding:7px 10px 4px;
 	text-shadow:0 1px 1px white;
 	text-transform:uppercase;
 }

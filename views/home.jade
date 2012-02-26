@@ -9,29 +9,31 @@ body
         li Simple way of uploading relevant information.
         li Search your index seamlessly.
    #login
+     <h4>Sign in</h4>
      form(action='/login', method='POST')
         #Email
-          label(for=everyauth.password.loginFormFieldName) Email
-          input(type='text', name=everyauth.password.loginFormFieldName, value="")
+          //label(for=everyauth.password.loginFormFieldName) Email
+          input.text-input(type='text', name=everyauth.password.loginFormFieldName, value="Email", required='')
         #password
-          label(for=everyauth.password.passwordFormFieldName) Password
-          input(type='password', name=everyauth.password.passwordFormFieldName)
+          //label(for=everyauth.password.passwordFormFieldName) Password
+          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password")
         #submit
-          input(type='submit') Login
+          input.btn(type='submit', value = "Sign In") Login
         //
         form 
-    #signup   
+    #signup  
+     <h4>New to hashedOut? Sign up<h4> 
      form(action='/register', method='POST')
-        #Email
-          label(for=everyauth.password.loginFormFieldName) Email
-          input(type='text', name=everyauth.password.loginFormFieldName, value=#{userParams[everyauth.password.loginFormFieldName]})
-        #password
-          label(for=everyauth.password.passwordFormFieldName) Password
-          input(type='password', name=everyauth.password.passwordFormFieldName)
         #name
-          label(for='name') Name
-          input(type='text', name='name')
+          //label(for='name') Name
+          input.text-input(type='text', name='name', value="Full Name")
+        #Email
+          //label(for=everyauth.password.loginFormFieldName) Email
+          input.text-input(type='text', name=everyauth.password.loginFormFieldName, value="Email")
+        #password
+          //label(for=everyauth.password.passwordFormFieldName) Password
+          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password")
         #submit
-          input(type='submit') Register
+          input.btn(type='submit', value="Sign Up") Register
        //
        form 

@@ -34,11 +34,11 @@ UserSchema.plugin(mongooseAuth, {
       , everyauth: {
             getLoginPath: '/login'
           , postLoginPath: '/login'
-          , loginView: 'home.jade'
+          , loginView: 'login.jade'
           , getRegisterPath: '/register'
           , postRegisterPath: '/register'
           , registerView: 'register.jade'
-          , loginSuccessRedirect: '/bingo.jade'
+          , loginSuccessRedirect: '/v1/'
           , registerSuccessRedirect: '/'
         }
     }
@@ -92,7 +92,9 @@ app.get('/', function(req,res){
 	}
 	res.render('home')
 });
-
+app.get('/v1/',function(req,res){
+	res.render('bingo')
+});
 app.get('/search', function(req,res){
   if(!req.loggedIn){
    console.log("Not logged in");	
@@ -129,10 +131,8 @@ app.post('/upload', function(req, res){
 		  path: u['pathname']
 		};
 	    http.get(options, function(result) { 
-	 	  console.log("Got response: " + result.statusCode);
 		  result.addListener('data', function (chunk) {
 	            body += chunk;
-	            console.log("chunk recieved\n");
 	          });
 	          result.addListener('end', function(){
 		      console.log("Sync the whole page");
