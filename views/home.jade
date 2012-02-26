@@ -16,7 +16,7 @@ body
           input.text-input(type='text', name=everyauth.password.loginFormFieldName, value="Email", required='')
         #password
           //label(for=everyauth.password.passwordFormFieldName) Password
-          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password")
+          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password", required='')
         #submit
           input.btn(type='submit', value = "Sign In") Login
         //
@@ -26,13 +26,13 @@ body
      form(action='/register', method='POST')
         #name
           //label(for='name') Name
-          input.text-input(type='text', name='name', value="Full Name")
+          input.text-input(type='text', name='name', value="Full Name", required='')
         #Email
           //label(for=everyauth.password.loginFormFieldName) Email
-          input.text-input(type='text', name=everyauth.password.loginFormFieldName, value="Email")
+          input.text-input(type='text', name=everyauth.password.loginFormFieldName, value="Email", required='')
         #password
           //label(for=everyauth.password.passwordFormFieldName) Password
-          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password")
+          input.text-input(type='password', name=everyauth.password.passwordFormFieldName, value="Password", required='')
         #submit
           input.btn(type='submit', value="Sign Up") Register
        //

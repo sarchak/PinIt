@@ -39,7 +39,7 @@ UserSchema.plugin(mongooseAuth, {
           , postRegisterPath: '/register'
           , registerView: 'register.jade'
           , loginSuccessRedirect: '/v1/'
-          , registerSuccessRedirect: '/'
+          , registerSuccessRedirect: '/v1/'
         }
     }
 });
