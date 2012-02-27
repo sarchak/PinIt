@@ -88,9 +88,11 @@ app.get('/', function(req,res){
 	console.log("logged in:"+req.loggedIn);
 	if(req && req.user) {
 	   	var user = req.user;
-		console.log(user.email);	
+		res.render('bingo')	
+	} else {
+		res.render('home')
 	}
-	res.render('home')
+	
 });
 app.get('/v1/',function(req,res){
 	res.render('bingo')
