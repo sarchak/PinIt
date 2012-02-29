@@ -69,7 +69,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.session({ secret: 'esoognom', maxAge: oneYear}));
+  app.use(express.session({ secret: 'esoognom', cookie: { maxAge: oneYear}}));
   app.use(mongooseAuth.middleware());
   app.use(express.static(__dirname + '/public'));
 });
