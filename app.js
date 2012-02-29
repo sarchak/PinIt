@@ -84,7 +84,7 @@ app.configure('production', function(){
 
 app.get('/', function(req,res){
 	//console.log("Coming in get");
-	//console.log("User:"+req.user);
+	console.log("User:"+req.user);
 	//console.log("logged in:"+req.loggedIn);
 	if(req && req.user) {
 	   	var user = req.user;
@@ -106,7 +106,7 @@ app.get('/search', function(req,res){
 	  //console.log(req.url);
 	  var quer = url.parse(req.url).query;
 	  var keyword = querystring.parse(quer)["q"];
-	  //console.log(keyword);
+	  console.log(req.user.email + ":"+ date.now() + ":"+keyword);
 	  SyncDB.find({'email':req.user.email, 'text' : new RegExp(keyword, 'i')}, function (err, doc){
 	    res.writeHeader(200,'OK');
 	    res.write(JSON.stringify(doc));
