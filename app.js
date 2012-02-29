@@ -83,9 +83,7 @@ app.configure('production', function(){
 });
 
 app.get('/', function(req,res){
-	//console.log("Coming in get");
 	console.log("User:"+req.user);
-	//console.log("logged in:"+req.loggedIn);
 	if(req && req.user) {
 	   	var user = req.user;
 		res.render('bingo')	
@@ -99,11 +97,9 @@ app.get('/v1/',function(req,res){
 });
 app.get('/search', function(req,res){
   if(!req.loggedIn){
-   //console.log("Not logged in");	
    res.writeHeader(401,"Login required");
    res.end();	
   } else {
-	  //console.log(req.url);
 	  var quer = url.parse(req.url).query;
 	  var keyword = querystring.parse(quer)["q"];
 	  console.log(req.user.email +":"+keyword);
