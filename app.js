@@ -83,9 +83,9 @@ app.configure('production', function(){
 });
 
 app.get('/', function(req,res){
-	console.log("Coming in get");
-	console.log("User:"+req.user);
-	console.log("logged in:"+req.loggedIn);
+	//console.log("Coming in get");
+	//console.log("User:"+req.user);
+	//console.log("logged in:"+req.loggedIn);
 	if(req && req.user) {
 	   	var user = req.user;
 		res.render('bingo')	
@@ -99,14 +99,14 @@ app.get('/v1/',function(req,res){
 });
 app.get('/search', function(req,res){
   if(!req.loggedIn){
-   console.log("Not logged in");	
+   //console.log("Not logged in");	
    res.writeHeader(401,"Login required");
    res.end();	
   } else {
-	  console.log(req.url);
+	  //console.log(req.url);
 	  var quer = url.parse(req.url).query;
 	  var keyword = querystring.parse(quer)["q"];
-	  console.log(keyword);
+	  //console.log(keyword);
 	  SyncDB.find({'email':req.user.email, 'text' : new RegExp(keyword, 'i')}, function (err, doc){
 	    res.writeHeader(200,'OK');
 	    res.write(JSON.stringify(doc));
@@ -123,7 +123,7 @@ app.post('/upload', function(req, res){
       res.end();
   }else{
 	  if(req.body.text == "undefined"){
-	    console.log('preparing request to ' + req.body.url)
+	    //console.log('preparing request to ' + req.body.url)
 	    u = require('url').parse(req.body.url);
 	    var body="";
 	    var options = {
