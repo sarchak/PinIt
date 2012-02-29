@@ -116,7 +116,6 @@ app.get('/search', function(req,res){
 });
 app.post('/upload', function(req, res){
   console.log(req.url);
-  console.log(req.user.email, req.user.name);
   if(!req.loggedIn){
 	  console.log("Not logged in");
       res.writeHeader(401,"Login required");
