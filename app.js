@@ -15,7 +15,12 @@ var everyauth = require('everyauth')
 var Schema = mongoose.Schema;
 var UserSchema = new Schema({})
   , User;
+var $ = require('jquery');
 var mongooseAuth = require('mongoose-auth');
+var nodemailer = require('nodemailer');
+var transport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail");
+console.log('Sendmail Configured');
+
 
 UserSchema.plugin(mongooseAuth, {
     everymodule: {
@@ -109,6 +114,41 @@ app.get('/search', function(req,res){
 	    res.end();
 	  });
   }
+});
+app.post('/mail', function(req,res){
+	console.log("I am coming here\n");
+	console.log(req.body);
+	var message = {
+
+	    // define transport to deliver this message
+	    transport: transport, 
+
+	    // sender info
+	    from: 'feedback@hashedOut.info',
+
+	    // Comma separated list of recipients
+	    to: 'shrikar84@gmail.com',
+
+	    // Subject of the message
+	    subject: 'Feedback from ' + req.body.name || req.body.email, //
+
+	    // plaintext body
+	    text: req.body.message,
+	};
+
+	console.log('Sending Mail');
+
+	nodemailer.send_mail(message, function(error){
+	    if(error){
+	        console.log('Error occured');
+	        console.log(error.message);
+	        return;
+	    }
+	    console.log('Message sent successfully!');
+	});
+	res.writeHeader(200,'OK');
+    res.write("success");
+    res.end();
 });
 app.post('/upload', function(req, res){
   console.log(req.url);
